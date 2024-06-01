@@ -1,0 +1,311 @@
+
+# Unicode French Azerty layout "oss" (Open Source Software)
+# https://deskthority.net/wiki/Loadkeys
+# https://github.com/haata/KeyboardLayouts
+# https://medium.com/@EchoLilt/terminal-shortcuts-cheat-sheet-cbca0a002410
+# https://keycombiner.com/collections/terminal/
+# https://www.makeuseof.com/linux-bash-terminal-shortcuts/
+# https://lore.altlinux.org/kbd/20190508102448.GC25512@Legion-PC.fortress/
+#
+# Filename: fr-oss
+# File encoding: UTF-8
+#
+# Matching Font for correct rendering all chars in this file:
+#    * Font name:       Julia Mono ≥ v0.056
+#    * Font version :   ≥ v0.056
+#    * Font sourcecode: https://github.com/cormullion/juliamono
+#    * Font website:    https://juliamono.netlify.app/
+#
+# Tests samples : https://www.cl.cam.ac.uk/~mgk25/ucs/examples/
+#
+# Box drawing alignment tests:                                          █
+#                                                                       ▉
+#   ╔══╦══╗  ┌──┬──┐  ╭──┬──╮  ╭──┬──╮  ┏━━┳━━┓  ┎┒┏┑   ╷  ╻ ┏┯┓ ┌┰┐    ▊ ╱╲╱╲╳╳╳
+#   ║┌─╨─┐║  │╔═╧═╗│  │╒═╪═╕│  │╓─╁─╖│  ┃┌─╂─┐┃  ┗╃╄┙  ╶┼╴╺╋╸┠┼┨ ┝╋┥    ▋ ╲╱╲╱╳╳╳
+#   ║│╲ ╱│║  │║   ║│  ││ │ ││  │║ ┃ ║│  ┃│ ╿ │┃  ┍╅╆┓   ╵  ╹ ┗┷┛ └┸┘    ▌ ╱╲╱╲╳╳╳
+#   ╠╡ ╳ ╞╣  ├╢   ╟┤  ├┼─┼─┼┤  ├╫─╂─╫┤  ┣┿╾┼╼┿┫  ┕┛┖┚     ┌┄┄┐ ╎ ┏┅┅┓ ┋ ▍ ╲╱╲╱╳╳╳
+#   ║│╱ ╲│║  │║   ║│  ││ │ ││  │║ ┃ ║│  ┃│ ╽ │┃  ░░▒▒▓▓██ ┊  ┆ ╎ ╏  ┇ ┋ ▎
+#   ║└─╥─┘║  │╚═╤═╝│  │╘═╪═╛│  │╙─╀─╜│  ┃└─╂─┘┃  ░░▒▒▓▓██ ┊  ┆ ╎ ╏  ┇ ┋ ▏
+#   ╚══╩══╝  └──┴──┘  ╰──┴──╯  ╰──┴──╯  ┗━━┻━━┛  ▗▄▖▛▀▜   └╌╌┘ ╎ ┗╍╍┛ ┋  ▁▂▃▄▅▆▇█
+#                                                ▝▀▘▙▄▟
+# True monospace symbols test:
+#
+# |          |
+# |↹⇬⇮␣⍽⇱⇲⇞⇟ |
+# |⇧⇩⇦⇨      |
+# |↑↓←→↖↗↙↘↔↕|
+# |⇑⇓⇐⇒⇖⇗⇙⇘⇔⇕|
+# |          |
+#
+# Combining characters with Dotted Circle (U+25CC) Test:
+#    * Combining Diacritical Marks (0300–036F)             ◌̧
+#    * Combining Diacritical Marks Extended (1AB0–1AFF)    ◌
+#    * Combining Diacritical Marks Supplement (1DC0–1DFF)  ◌
+#    * Combining Diacritical Marks for Symbols (20D0–20FF) ◌
+#    * Cyrillic Extended-A (2DE0–2DFF)                     ◌
+#    * Combining Half Marks (FE20–FE2F)                    ◌
+#
+# See:
+#    * https://en.wikipedia.org/wiki/Combining_character
+#    * https://en.wikipedia.org/wiki/Dotted_circle
+
+#Combining characters
+#
+#	◌́  \'
+#	◌̀  \`
+#	◌̂  \^
+#	◌̈  \"
+#	◌̃  \~
+#	◌̄  \=
+#	◌̇  \.
+#	◌̆  \u
+#	◌̌  \v
+#	◌̋  \H
+#	◌͡  \t
+#	◌̧  \c
+#	◌̣  \d
+#	◌̱  \b
+#	◌̸  \not
+#
+# ------------------------------------------------------------------------------
+# Keymap File for Linux - "oss" Layout
+# ------------------------------------------------------------------------------
+#
+# File:          fr-oss.map
+# Layout:        Open Source Software/Symbols ? (OSS)
+# Version:       1.0
+# Author:        [Your Name] / [Contributors] # note: See xkb
+# Maintainer:    [Maintainer's Name / Team]
+# License:       GPL-2.0-or-later
+#
+# Description:
+# This keymap file provides the "oss" keyboard layout, which is designed to
+# support a wide range of Unicode characters and diacritics, allowing users to
+# easily type in multiple languages.
+#
+# Installation:
+# To install this keymap, place the file in the appropriate directory, typically
+# /usr/share/kbd/keymaps/. Then, load the keymap using the `loadkeys` command:
+#
+#     loadkeys /usr/share/kbd/keymaps/fr-oss.map
+#
+# Usage:
+# This layout includes mappings for various diacritical marks and special
+# characters. It is ideal for multilingual users who need access to an extended
+# character set.
+#
+# Change Log:
+# - v1.0: Initial release with support for [list of features].
+#
+# Contributions:
+# Contributions to this keymap are welcome. Please submit patches or suggestions
+# to [Contact Information or Repository Link].
+#
+# Notes:
+# - Ensure that your system's locale settings are configured correctly to
+#   fully utilize the capabilities of this keymap.
+# - Refer to [Documentation Link] for a complete guide on using this keymap.
+#
+#
+#
+# ------------------------------------------------------------------------------
+# Keymap definitions V1
+# ------------------------------------------------------------------------------
+# ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┐
+# ┃ ┌────1┐     ┌───59┬───60┬───61┬───62┐ ┌───63┬───64┬───65┬───66┐ ┌───67┬───68┬───87┬───88┐ ┌───99┬───70┬──119┐                           ┃
+# ┃ │Échap│     │ F1  │ F2  │F3   │F4   │ │ F5  │ F6  │ F7  │ F8  │ │ F9  │ F10 │ F11 │ F12 │ │Impr │Arrêt│Pause│                           ┃
+# ┃ │     │     │     │     │     │     │ │     │     │     │     │ │     │     │     │     │ │écran│défil│     │                           ┃
+# ┃ └─────┘     └─────┴─────┴─────┴─────┘ └─────┴─────┴─────┴─────┘ └─────┴─────┴─────┴─────┘ └─────┴─────┴─────┘                           ┃
+# ┃ ┌───41┬────2┬────3┬────4┬────5┬────6┬────7┬────8┬────9┬───10┬───11┬───12┬───13┬───────14┐ ┌──110┬──102┬──104┐ ┌───69┬───98┬───55┬───74┐ ┃
+# ┃ │ ³͏ ̧◌ │ 1 ̨◌ │ 2 É │ 3 ̆◌ │ 4 — │ 5 – │ 6 ‑ │ 7 È │ 8 ™ │ 9 Ç │ 0 À │ ° ≠ │ + ± │ ⌫ Retour│ │Inser│ ⇱   │Haut │ │Verr.│ ∕   │ ⋅   │ −   │ ┃
+# ┃ │ ² ¹ │ & ̌◌ │ é ̃◌ │ " # │ ' { │ ( [ │ - | │ è ̀◌ │ _ \ │ ç ^ │ à @ │ ) ] │ = } │  arrière│ │     │     │  ⇞  │ │Num. │ / ÷ │ * × │ - − │ ┃
+# ┃ ├─────15┬───16┬───17┬───18┬───19┬───20┬───21┬───22┬───23┬───24┬───25┬───26┬───27┬─────28┤ ├──111┼──107┼──109┤ ├───71┼───72┼───73┼───78┤ ┃
+# ┃ │       │ A Æ │ Z Â │ E ¢ │ R Ê │ T Þ │ Y Ÿ │ U Û │ I Î │ O Œ │ P Ô │ ͏̈◌ ̊◌ │ £ Ø │Entrée │ │Suppr│Fin  │Bas  │ │ 7 ⇖ │ 8 ⇑ │ 9 ⇗ │ +   │ ┃
+# ┃ │Tab  ↹ │ a æ │ z â │ e € │ r ê │ t þ │ y ÿ │ u û │ i î │ o œ │ p ô │ ̂◌ ͏͂◌ │ $ ø │   ⏎   │ │     │     │  ⇟  │ │ ⇱ ↖ │ ⇧ ↑ │ ⇞ ↗ │     │ ┃
+# ┃ ├──────58┬───30┬───31┬───32┬───33┬───34┬───35┬───36┬───37┬───38┬───39┬───40┬───43┐      │ └─────┴─────┴─────┘ ├───75┼───76┼───77┤     │ ┃
+# ┃ │Verrou  │ Q Ä │ S „ │ D Ë │ F ‚ │ G ¥ │ H Ð │ J Ü │ K Ï │ L Ŀ │ M Ö │ % Ù │ µ ̄◌ │      │                     │ 4 ⇐ │ 5 ⇔ │ 6 ⇒ │     │ ┃
+# ┃ │Maj   ⇬ │ q ä │ s ß │ d ë │ f ‘ │ g ’ │ h ð │ j ü │ k ï │ l ŀ │ m ö │ ù ́◌ │ * ͏̀◌ │      │                     │ ⇦ ← │   ↔ │ ⇨ → │ + + │ ┃
+# ┃ ├─────42┬┴──86┬┴──44┬┴──45┬┴──46┬┴──47┬┴──48┬┴──49┬┴──50┬┴──51┬┴──52┬┴──53┬┴─────┴────54┤       ┌──103┐       ├───79┼───80┼───81┼───96┤ ┃
+# ┃ │       │ > ≥ │ W “ │ X ” │ C ® │ V ← │ B ↑ │ N → │ ? … │ . ⋅ │ / ∕ │ § − │             │       │  ⇧  │       │ 1 ⇙ │ 2 ⇓ │ 3 ⇘ │     │ ┃
+# ┃ │Maj. ⇧ │ < ≤ │ w « │ x » │ c © │ v ⍽ │ b ↓ │ n ¬ │ , ¿ │ ; × │ : ÷ │ ! ¡ │Maj.       ⇧ │       │     │       │ ⇲ ↙ │ ⇩ ↓ │ ⇟ ↘ │     │ ┃
+# ┃ ├─────29┼────125┬───┴─56┬─┴─────┴─────┴─────┴─────┴───57┬────100┬────126┬─┴──127┬─────97┤ ┌──105┼──108┼──106┐ ├─────┴───82┼───83┤Entr.│ ┃
+# ┃ │       │       │       │ ␣    Espace fine insécable ⍽  │       │       │       │       │ │     │     │     │ │ 0       ⇕ │ ,   │     │ ┃
+# ┃ │Ctrl   │Meta   │Alt    │ ␣ Espace  Espace insécable ⍽  │AltGr⇮ │Meta   │Menu   │Ctrl   │ │ ⇦   │  ⇩  │   ⇨ │ │ Inser.  ↕ │ . ⍽ │     │ ┃
+# ┃ └───────┴───────┴───────┴───────────────────────────────┴───────┴───────┴───────┴───────┘ └─────┴─────┴─────┘ └───────────┴─────┴─────┘ ┃
+# ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+#
+# ------------------------------------------------------------------------------
+# Keymap definitions with asci control keys
+# ------------------------------------------------------------------------------
+# ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┐
+# ┃ ┌────1┐     ┌───59┬───60┬───61┬───62┐ ┌───63┬───64┬───65┬───66┐ ┌───67┬───68┬───87┬───88┐ ┌───99┬───70┬──119┐                           ┃
+# ┃ │Échap│     │ F1  │ F2  │F3   │F4   │ │ F5  │ F6  │ F7  │ F8  │ │ F9  │ F10 │ F11 │ F12 │ │Impr │Arrêt│Pause│                           ┃
+# ┃ │     │     │     │     │     │     │ │     │     │     │     │ │     │     │     │     │ │écran│défil│     │                           ┃
+# ┃ └─────┘     └─────┴─────┴─────┴─────┘ └─────┴─────┴─────┴─────┘ └─────┴─────┴─────┴─────┘ └─────┴─────┴─────┘                           ┃
+# ┃ ┌───41┬────2┬────3┬────4┬────5┬────6┬────7┬────8┬────9┬───10┬───11┬───12┬───13┬───────14┐ ┌──110┬──102┬──104┐ ┌───69┬───98┬───55┬───74┐ ┃
+# ┃ │ ³͏ ̧◌ │ 1 ̨◌ │ 2 É │ 3 ̆◌ │ 4 — │ 5 – │ 6 ‑ │ 7 È │ 8 ™ │ 9 Ç │ 0 À │ ° ≠ │ + ± │ ⌫ Retour│ │Inser│ ⇱   │Haut │ │Verr.│ ∕   │ ⋅   │ −   │ ┃
+# ┃ │ ² ¹ │ & ̌◌ │ é ̃◌ │ " # │ ' { │ ( [␛│ - | │ è ̀◌ │␟_ \␜│ ç ^␞│ à @␀│ ) ]␝│ = } │  arrière│ │     │     │  ⇞  │ │Num. │ / ÷ │ * × │ - − │ ┃
+# ┃ ├─────15┬───16┬───17┬───18┬───19┬───20┬───21┬───22┬───23┬───24┬───25┬───26┬───27┬─────28┤ ├──111┼──107┼──109┤ ├───71┼───72┼───73┼───78┤ ┃
+# ┃ │       │␁A Æ │␚Z Â │␅E ¢ │␒R Ê │␔T Þ │␙Y Ÿ │␕U Û │␉I Î │␏O Œ │␐P Ô │ ͏̈◌ ̊◌ │ £ Ø │Entrée │ │Suppr│Fin  │Bas  │ │ 7 ⇖ │ 8 ⇑ │ 9 ⇗ │ +   │ ┃
+# ┃ │Tab  ↹ │ a æ │ z â │ e € │ r ê │ t þ │ y ÿ │ u û │ i î │ o œ │ p ô │ ̂◌ ͏͂◌ │ $ ø │   ⏎   │ │     │     │  ⇟  │ │ ⇱ ↖ │ ⇧ ↑ │ ⇞ ↗ │     │ ┃
+# ┃ ├──────58┬───30┬───31┬───32┬───33┬───34┬───35┬───36┬───37┬───38┬───39┬───40┬───43┐      │ └─────┴─────┴─────┘ ├───75┼───76┼───77┤     │ ┃
+# ┃ │Verrou  │␑Q Ä │␓S „ │␄D Ë │␆F ‚ │␇G ¥ │␈H Ð │␊J Ü │␋K Ï │␌L Ŀ │␍M Ö │ % Ù │ µ ̄◌ │      │                     │ 4 ⇐ │ 5 ⇔ │ 6 ⇒ │     │ ┃
+# ┃ │Maj   ⇬ │ q ä │ s ß │ d ë │ f ‘ │ g ’ │ h ð │ j ü │ k ï │ l ŀ │ m ö │ ù ́◌ │ * ͏̀◌ │      │                     │ ⇦ ← │   ↔ │ ⇨ → │ + + │ ┃
+# ┃ ├─────42┬┴──86┬┴──44┬┴──45┬┴──46┬┴──47┬┴──48┬┴──49┬┴──50┬┴──51┬┴──52┬┴──53┬┴─────┴────54┤       ┌──103┐       ├───79┼───80┼───81┼───96┤ ┃
+# ┃ │       │ > ≥ │␗W “ │␘X ” │␃C ® │␖V ← │␂B ↑ │␎N → │␡? … │ . ⋅ │ / ∕ │ § − │             │       │  ⇧  │       │ 1 ⇙ │ 2 ⇓ │ 3 ⇘ │     │ ┃
+# ┃ │Maj. ⇧ │ < ≤ │ w « │ x » │ c © │ v ⍽ │ b ↓ │ n ¬ │ , ¿ │ ; × │ : ÷ │ ! ¡ │Maj.       ⇧ │       │     │       │ ⇲ ↙ │ ⇩ ↓ │ ⇟ ↘ │     │ ┃
+# ┃ ├─────29┼────125┬───┴─56┬─┴─────┴─────┴─────┴─────┴───57┬────100┬────126┬─┴──127┬─────97┤ ┌──105┼──108┼──106┐ ├─────┴───82┼───83┤Entr.│ ┃
+# ┃ │       │       │       │ ␣    Espace fine insécable ⍽  │       │       │       │       │ │     │     │     │ │ 0       ⇕ │ ,   │     │ ┃
+# ┃ │Ctrl   │Meta   │Alt    │␠␣ Espace  Espace insécable ⍽  │AltGr⇮ │Meta   │Menu   │Ctrl   │ │ ⇦   │  ⇩  │   ⇨ │ │ Inser.  ↕ │ . ⍽ │     │ ┃
+# ┃ └───────┴───────┴───────┴───────────────────────────────┴───────┴───────┴───────┴───────┘ └─────┴─────┴─────┘ └───────────┴─────┴─────┘ ┃
+# ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+#
+#
+# Caps_Lock         = CtrlL_Lock
+# Caps_Lock + Shift = CtrlR_Lock
+#
+#  Layout  | Layout | Layout | Modifiers                 | Range      | #
+# ------------------------------------------------------------------------
+#          |        | Group1 |                           |   0 ->  15 | 0
+#   Shift  | Plain  | Group2 | ShiftL                    |  16 ->  31 | 1
+#     +    |        | Group3 |        ShiftR             |  32 ->  47 | 1
+#   Caps   |        | Group4 | ShiftL ShiftR             |  48 ->  63 | 2
+#  Locked  |--------------------------------------------------------------
+#          |        | Group1 |               CtrlL       |  64 ->  79 | 1
+#   Mode   | Caps   | Group2 | ShiftL        CtrlL       |  80 ->  95 | 2
+# Disabled | Locked | Group3 |        ShiftR CtrlL       |  96 -> 111 | 2
+#          |        | Group4 | ShiftL ShiftR CtrlL       | 112 -> 127 | 3
+# ------------------------------------------------------------------------
+#          |        | Group1 |                     CtrlR | 128 -> 143 | 1
+#   Shift  | Plain  | Group2 | ShiftL              CtrlR | 144 -> 159 | 2
+#     +    |        | Group3 |        ShiftR       CtrlR | 160 -> 175 | 2
+#   Caps   |        | Group4 | ShiftL ShiftR       CtrlR | 176 -> 191 | 3
+#  Locked  |--------------------------------------------------------------
+#          |        | Group1 |               CtrlL CtrlR | 192 -> 207 | 2
+#   Mode   | Caps   | Group2 | ShiftL        CtrlL CtrlR | 208 -> 223 | 3
+# Enabled  | Locked | Group3 |        ShiftR CtrlL CtrlR | 224 -> 239 | 3
+#          |        | Group4 | ShiftL ShiftR CtrlL CtrlR | 240 -> 255 | 4
+# ------------------------------------------------------------------------
+#
+#
+# Caps_Lock         = CtrlL_Lock
+# Caps_Lock + Shift = CtrlR_Lock
+# 
+#   Layout   | Layout | Layout | Modifiers                 | Range      | #
+# --------------------------------------------------------------------------
+#            |        | Group1 |                           |   0 ->  15 | 0
+#            | Plain  | Group2 | ShiftL                    |  16 ->  31 | 1
+#            |        | Group3 |        ShiftR             |  32 ->  47 | 1
+# CtrlR_Lock |        | Group4 | ShiftL ShiftR             |  48 ->  63 | 2
+#  Mode OFF  |--------------------------------------------------------------
+#            |        | Group1 |               CtrlL       |  64 ->  79 | 1
+#            | Caps   | Group2 | ShiftL        CtrlL       |  80 ->  95 | 2
+#            | Locked | Group3 |        ShiftR CtrlL       |  96 -> 111 | 2
+#            |        | Group4 | ShiftL ShiftR CtrlL       | 112 -> 127 | 3
+# --------------------------------------------------------------------------
+#            |        | Group1 |                     CtrlR | 128 -> 143 | 1
+#            | Plain  | Group2 | ShiftL              CtrlR | 144 -> 159 | 2
+#            |        | Group3 |        ShiftR       CtrlR | 160 -> 175 | 2
+# CtrlR_Lock |        | Group4 | ShiftL ShiftR       CtrlR | 176 -> 191 | 3
+#  Mode ON   |--------------------------------------------------------------
+#            |        | Group1 |               CtrlL CtrlR | 192 -> 207 | 2
+#            | Caps   | Group2 | ShiftL        CtrlL CtrlR | 208 -> 223 | 3
+#            | Locked | Group3 |        ShiftR CtrlL CtrlR | 224 -> 239 | 3
+#            |        | Group4 | ShiftL ShiftR CtrlL CtrlR | 240 -> 255 | 4
+# --------------------------------------------------------------------------
+#
+#
+#              0       | 1       | 2       | 3       | 4       | 5       | 6       | 7       | 8       | 9       | 10      | 11      | 12      | 13      | 14      | 15      |
+#              ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+#              Plain   | Shift   | AltGr   | Shift   | Control | Control | Control | Control | Alt     | Alt     | Alt     | Alt     | Alt     | Alt     | Alt     | Alt     |     
+#                      |         |         |         |         | Shift   |         | Shift   |         | Shift   |         | Shift   |         | Shift   |         | Shift   |   
+#                      |         |         | AltGr   |         |         | AltGr   | AltGr   |         |         | AltGr   | AltGr   |         |         | AltGr   | AltGr   |                                                
+#                      |         |         |         |         |         |         |         |         |         |         |         | Control | Control | Control | Control | 
+#            | 0                          | 1                           | 2                           | 3                           | 4                           | 5                           | 6                           | 7                           | 8                           | 9                           | 10                          | 11                          | 12                          | 13                          | 14                          | 15                          |
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#            | Plain                      | Shift                       | AltGr                       | Shift                       | Control                     | Control                     | Control                     | Control                     | Alt                         | Alt                         | Alt                         | Alt                         | Alt                         | Alt                         | Alt                         | Alt                         |     
+#            |                            |                             |                             |                             |                             | Shift                       |                             | Shift                       |                             | Shift                       |                             | Shift                       |                             | Shift                       |                             | Shift                       |   
+#            |                            |                             |                             | AltGr                       |                             |                             | AltGr                       | AltGr                       |                             |                             | AltGr                       | AltGr                       |                             |                             | AltGr                       | AltGr                       |                                                
+#            |                            |                             |                             |                             |                             |                             |                             |                             |                             |                             |                             |                             | Control                     | Control                     | Control                     | Control                     | 
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#            |                            |                             |                             |                             |                             |                             |                             |                             |                             |                             |                             |                             |                             |                             |                             |                             | 
+#
+#
+#
+# 0       | 1       | 2       | 3       | 4       | 5       | 6       | 7       | 8       | 9       | 10      | 11      | 12      | 13      | 14      | 15      |
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Plain   | Shift   | AltGr   | Shift   | Control | Control | Control | Control | Alt     | Alt     | Alt     | Alt     | Alt     | Alt     | Alt     | Alt     |     
+#         |         |         |         |         | Shift   |         | Shift   |         | Shift   |         | Shift   |         | Shift   |         | Shift   |   
+#         |         |         | AltGr   |         |         | AltGr   | AltGr   |         |         | AltGr   | AltGr   |         |         | AltGr   | AltGr   |                                                
+#         |         |         |         |         |         |         |         |         |         |         |         | Control | Control | Control | Control |                   
+#                                
+#                                
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Plain Shift AltGr Shift+AltGr Control Control+Shift Control+AltGr Control+Shift+AltGr Alt Alt+Shit Alt+AltGr Alt+Shift+AltGr Alt+Control Alt+Shift+Control Alt+AltGr+Control Alt+Shift+AltGr+Control
+# ──────────┬────────────────────┬────────────────────┬────────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬
+#           │ Plain   (+  0)     │ Shift       (+  1) │ AltGr           (+  2) │ Shift       (+  1) │ Control     (+  4) │ Control     (+  4) │ Alt         (+  8) │ Shit        (+  1) │ Control     (+  4) │ ShiftL      (+ 16) │ ShiftL      (+ 16) │ ShiftL      (+ 16) │ ShiftL      (+ 16) │ ShiftL      (+ 16) │ ShiftL      (+ 16) │ShiftL      (+ 16)  │ ShiftL      (+ 16) │
+#           │         (+  0)     │             (+  0) │                 (+  0) │ AltGr       (+  2) │             (+  0) │ AltGr       (+  2) │             (+  0) │ Alt         (+  8) │ Alt         (+  8) │ Plain       (+  0) │ Shift       (+  1) │ AltGr       (+  2) │ Control     (+  4) │ Control     (+  4) │ Alt         (+  8) │Shift       (+  1)  │ Control     (+  4) │
+#           │         (+  0)     │             (+  0) │                 (+  0) │             (+  0) │             (+  0) │             (+  0) │             (+  0) │             (+  0) │             (+  0) │             (+  0) │             (+  0) │             (+  0) │             (+  0) │ AltGr       (+  2) │             (+  0) │Alt         (+  8)  │ Alt         (+  8) │
+#           │         (=  0)     │             (=  1) │                 (=  2) │             (=  3) │             (=  4) │             (=  6) │             (=  8) │             (=  9) │             (= 12) │             (= 16) │             (= 17) │             (= 18) │             (= 20) │             (= 22) │             (= 24) │            (= 25)  │             (= 28) │
+# ──────────┼────────────────────┼────────────────────┼────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼
+
+
+
+
+
+
+#### Usefull kbd commit message :
+# I talked with Anton Zinoviev and he helped me figure out their idea of
+# switching multiple layouts with a single key combination:
+# 
+# > how you solved the problem of switching more than two layouts with one
+# > key combination ?
+# 
+# The keys with ISO_Next_Group, for example the right Alt (keynumber 100),
+# are defined like this:
+# 
+# keycode 100 = ShiftL_lock
+# ShiftL keycode 100 = ShiftR_lock
+# ShiftR keycode 100 = ShiftR_lock
+# ShiftL ShiftR keycode 100 = ShiftL_lock
+# 
+# So this key will work in the following way:
+# 
+# no modifiers are active -> ShiftL is active
+# ShiftL is active -> ShiftL and ShiftR are active
+# ShiftL and ShiftR are active -> ShiftR is active
+# ShiftR is active -> no modifiers are active
+# 
+# The groups (the layouts) are placed in the following way:
+# 
+# active modifiers 1 group 2 groups 3 groups 4 groups
+# ---------------- ------- -------- -------- --------
+# no modifier group 1 group 1 group 1 group 1
+# ShiftL group 1 group 2 group 2 group 2
+# ShiftR group 1 group 2 group 3 group 4
+# ShiftL+ShiftR group 1 group 1 group 1 group 3
+# 
+# In this way we have the following cycles:
+# 
+# 1 group: gr1->gr1->gr1->...
+# 2 groups: gr1->gr2->gr1->gr2->...
+# 3 groups: gr1->gr2->gr1->gr4->gr1->gr2->gr1->gr4->...
+# 4 groups: gr1->gr2->gr3->gr4->gr1->gr2->gr3->gr4->...
+#
+#####################
+####### Locks #######
+#####################
+
+# Since the F1 - F4 keys could have various functions already defined, they are not blanked
+
+# Keycode  59 - F1 (ShiftL_Lock)
+ctrlr                   keycode  59 = ShiftL_Lock
+
+# Keycode  60 - F2 (ShiftR_Lock)
+ctrlr                   keycode  60 = ShiftR_Lock
+
+# Keycode  61 - F3 (CtrlL_Lock)
+ctrlr                   keycode  61 = CtrlL_Lock
+
+# Keycode  62 - F4 (CtrlR_Lock)
+ctrlr                   keycode  62 = CtrlR_Lock

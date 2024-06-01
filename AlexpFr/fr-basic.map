@@ -1,0 +1,93 @@
+# Plain French Azerty layout.
+
+# ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┲━━━━━━━━━┓
+# │     │ 1   │ 2   │ 3   │ 4   │ 5   │ 6   │ 7   │ 8   │ 9   │ 0   │ °   │ +   ┃ ⌫ Retour┃
+# │ ²   │ &   │ é ~ │ " # │ ' { │ ( [ │ - | │ è ` │ _ \ │ ç ^ │ à @ │ ) ] │ = } ┃  arrière┃
+# ┢━━━━━┷━┱───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┴─┬───┺━┳━━━━━━━┫
+# ┃       ┃ A   │ Z   │ E   │ R   │ T   │ Y   │ U   │ I   │ O   │ P   │ ¨   │ £   ┃Entrée ┃
+# ┃Tab ↹  ┃ a   │ z   │ e € │ r   │ t   │ y   │ u   │ i   │ o   │ p   │ ^   │ $ ¤ ┃   ⏎   ┃
+# ┣━━━━━━━┻┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┺┓      ┃
+# ┃        ┃ Q   │ S   │ D   │ F   │ G   │ H   │ J   │ K   │ L   │ M   │ %   │ µ   ┃      ┃
+# ┃Maj ⇬   ┃ q   │ s   │ d   │ f   │ g   │ h   │ j   │ k   │ l   │ m   │ ù   │ *   ┃      ┃
+# ┣━━━━━━━┳┹────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┬┴────┲┷━━━━━┻━━━━━━┫
+# ┃       ┃ >   │ W   │ X   │ C   │ V   │ B   │ N   │ ?   │ .   │ /   │ §   ┃             ┃
+# ┃Shift ⇧┃ <   │ w   │ x   │ c   │ v   │ b   │ n   │ ,   │ ;   │ :   │ !   ┃Shift ⇧      ┃
+# ┣━━━━━━━╋━━━━━┷━┳━━━┷━━━┱─┴─────┴─────┴─────┴─────┴─────┴───┲━┷━━━━━╈━━━━━┻━┳━━━━━━━┳━━━┛
+# ┃       ┃       ┃       ┃                                   ┃       ┃       ┃       ┃
+# ┃Ctrl   ┃Meta   ┃Alt    ┃ ␣ Espace                          ┃AltGr ⇮┃Menu   ┃Ctrl   ┃
+# ┗━━━━━━━┻━━━━━━━┻━━━━━━━┹───────────────────────────────────┺━━━━━━━┻━━━━━━━┻━━━━━━━┛
+#
+
+# Légende des niveaux :
+# Niveau 0 : Pas de modification
+# Niveau 1 : Avec Shift
+# Niveau 2 : Avec AltGr
+# Niveau 4 : Avec Shift + AltGr
+
+charset "ISO-8859-15"
+
+#keymaps 0-2,4,6,8,12
+#keymaps 0-2,4,6,8,12,16,17,18,24,28
+
+keymaps  0- 2, 4, 6, 8,12
+keymaps 16-18,20,22,24,28
+include "azerty-layout"
+include "linux-with-alt-and-altgr"
+strings as usual
+compose as usual for "iso-8859-1"
+
+
+# Add euro symbol for altr letter "e".
+altgr	keycode  18 = euro
+
+# ──────────┬──────────────────────┬──────────────────────┬──────────────────────┐
+#           │ Plain                │ Shift                │ AltGr                │
+# ──────────┼──────────────────────┼──────────────────────┼──────────────────────┤
+keycode   1 =  Escape                 Escape                Escape
+keycode   2 = +ampersand             +one                   VoidSymbol 
+keycode   3 = +eacute                +two                   dead_tilde
+keycode   4 = +quotedbl              +three                 numbersign
+keycode   5 = +apostrophe            +four                  braceleft
+keycode   6 = +parenleft             +five                  bracketleft
+keycode   7 = +minus                 +six                   bar
+keycode   8 = +egrave                +seven                 dead_grave
+keycode   9 = +underscore            +eight                 backslash
+keycode  10 = +ccedilla              +nine                  asciicircum
+keycode  11 = +agrave                +zero                  at
+keycode  12 = +parenright            +degree                bracketright
+keycode  13 = +equal                 +plus                  braceright
+keycode  14 =  Delete
+keycode  15 =  Tab                    Meta_Tab              VoidSymbol
+keycode  26 = +dead_circumflex       +dead_diaeresis        VoidSymbol
+keycode  27 = +dollar                +sterling              currency
+keycode  28 =  Return
+keycode  29 =  Control                Control               Control
+keycode  40 = +ugrave                +percent               VoidSymbol
+keycode  41 =  twosuperior            twosuperior           twosuperior
+keycode  42 =  Shift Shift Shift
+keycode  43 = +asterisk              +mu                    VoidSymbol
+keycode  50 = +comma                 +question              VoidSymbol
+keycode  51 = +semicolon             +period                VoidSymbol
+keycode  52 = +colon                 +slash                 VoidSymbol
+keycode  53 = +exclam                +section               VoidSymbol
+keycode  54 =  Shift Shift Shift
+keycode  56 =  Alt
+keycode  57 =  space                  space                 space
+keycode  58 =  Caps_Lock   Caps_Lock Caps_Lock                         
+keycode  86 =  less                   greater               bar
+keycode  97 =  Control                Control               Control
+
+Shift keycode 58 = ShiftL_Lock
+ShiftL Shift keycode 58 = ShiftL_Lock
+ShiftL keycode 58 = Caps_Lock
+ShiftL keycode  42 = Shift
+ShiftL Shift keycode  42 = Shift
+ShiftL	keycode  16 = A
+ShiftL	Shift	keycode  16 = A
+
+ShiftL keycode   3 = +Eacute
+ShiftL Shift keycode   3 = +two
+ShiftL AltGr keycode   3 = dead_tilde
+
+ShiftL Control alt	keycode  59 = Console_1
+
