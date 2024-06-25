@@ -3531,7 +3531,7 @@ sub xkb_key {
 		}
 		# symbols[GroupN] = [ X1, X2, ... ]
 		if ($list =~ (s/^symbols\[[Gg]roup([1-4])\]
-			      =\[([^\]]*?)\],(.*)/$3/x)) {
+                  =\[([^\]]*?)\],(.*)/$3/x)) {
 		    my $group = $1 - 1 + $base_group;
 		    (my $symbols = $2) =~ s/,/ /g;
 		    my @groupsymbols = split ' ', $symbols;
@@ -3913,6 +3913,8 @@ sub x_to_ascii {
 my @vector;
 # $numlockable[group] -> whether the group is numlockable
 my @numlockable;
+# $capslockable[group] -> whether the group is capslockable
+my @capslockable;
 # A vector with same length as @vector.  Measures how well each element of
 # @vector represents the xkb symbol for the particular key.  Bigger values
 # mean lower quality.
@@ -3942,9 +3944,15 @@ sub flatten {
     # 32 ShiftR         Group4
     # 48 ShiftL+ShiftR  Group3
     my $key = $_[0];
+                warning "symbols_table <$types_table{$key}>\n";
+                    if ($key == 10){
+                        warning "xkeysym <$key>\n";
+
+        }
     @vector = ();
     @quality = ();
     @numlockable = (0,0,0,0);
+    @capslockable = (0,0,0,0,0,0,0,0);
     my @real_group_table = ([-1, -1, -1, -1],
 			    [0, 0, 0, 0], # gr1 -> gr1 -> gr1 -> gr1
 			    [0, 1, 1, 0], # gr1 -> gr2 -> gr1 -> gr2
@@ -3984,10 +3992,8 @@ sub flatten {
 	    for ($types_table{$key}) {
 		if (/^(DEFAULT|ONE_LEVEL|TWO_LEVEL
                       |THREE_LEVEL|ALPHABETIC
-                      |EIGHT_LEVEL|EIGHT_LEVEL_ALPHABETIC
-                      |EIGHT_LEVEL_SEMIALPHABETIC
-                      |FOUR_LEVEL|FOUR_LEVEL_ALPHABETIC
-                      |FOUR_LEVEL_SEMIALPHABETIC
+                      |EIGHT_LEVEL
+                      |FOUR_LEVEL
                       |SEPARATE_CAPS_AND_SHIFT_ALPHABETIC
 		      |KEYPAD|FOUR_LEVEL_X|FOUR_LEVEL_MIXED_KEYPAD
 		      |FOUR_LEVEL_KEYPAD|LOCAL_EIGHT_LEVEL
@@ -3998,6 +4004,21 @@ sub flatten {
 		    # Level2: altgr
 		    # Level3: shift+altgr
 		    $coord = ($group << 4) + $level;
+		} elsif (/^(FOUR_LEVEL_ALPHABETIC)$/x) {
+            @capslockable = (1,1,1,1,0,0,0,0);
+            $coord = ($group << 4) + $level;
+		} elsif (/^(FOUR_LEVEL_SEMIALPHABETIC)$/x) {
+            @capslockable = (1,1,0,0,0,0,0,0);
+            $coord = ($group << 4) + $level;
+		} elsif (/^(FOUR_LEVEL_LOCKABLE_LEVEL2)$/x) {
+            @capslockable = (1,1,0,0,0,0,0,0);
+            $coord = ($group << 4) + $level;
+		} elsif (/^(EIGHT_LEVEL_ALPHABETIC)$/x) {
+            @capslockable = (1,1,1,1,1,1,1,1);
+            $coord = ($group << 4) + $level;
+		} elsif (/^(EIGHT_LEVEL_SEMIALPHABETIC)$/x) {
+            @capslockable = (1,1,1,1,0,0,0,0);
+            $coord = ($group << 4) + $level;
 		} elsif (/^(PC_BREAK|PC_CONTROL_LEVEL2
                            |PC_LCONTROL_LEVEL2|PC_RCONTROL_LEVEL2)$/x) {
 		    # Level0: plain
@@ -4392,37 +4413,63 @@ sub print_vector {
 	$line =~ s/NoSymbol/VoidSymbol/g;
 	$KEYMAP .= "keycode $kernel_code = $line\n";
     } else {
-	my @capsvector = @vector;
-	for my $mask (0 .. 63) {
-	    if ($capsvector[$mask] =~ /^(\+?)U\+([0-9a-fA-F]+)$/) {
-		my $v = hex ($2);
-		my $l = ord (lc (pack ("U", $v)));
-		my $u = ord (uc (pack ("U", $v)));
-		my $c = ($v == $l ? $u : $l);
-		$capsvector[$mask] = $1 ."U+". sprintf ("%04x", $c);
-		if ($v != $c && $v > 0x7f) {
-		    $broken_caps = 1;
-		}
-	    }
-	}
-	if ($no_NoSymbol) {
-	    $KEYMAP .= "keycode $kernel_code = @vector @capsvector\n";
-	} else {
-	    for my $mask (0 .. 63) {
-		if ($vector[$mask] ne 'NoSymbol') {
-		    $KEYMAP .= "$modifier_combinations[$mask]"
-			." keycode $kernel_code = $vector[$mask]\n";
-		    if ($modifier_combinations[$mask] =~ /plain/) {
-			$KEYMAP .= "ctrll"
-			    ." keycode $kernel_code = $capsvector[$mask]\n";
-		    } else {
-			$KEYMAP .= "ctrll $modifier_combinations[$mask]"
-			    ." keycode $kernel_code = $capsvector[$mask]\n";
-		    }
-		}
-	    }
-	}
+    my @capsvector = @vector;
+    for my $mask (0 .. 63) {
+        if ($capsvector[$mask] =~ /^(\+?)U\+([0-9a-fA-F]+)$/) {
+        my $v = hex ($2);
+        my $l = ord (lc (pack ("U", $v)));
+        my $u = ord (uc (pack ("U", $v)));
+        my $c = ($v == $l ? $u : $l);
+        $capsvector[$mask] = $1 ."U+". sprintf ("%04x", $c);
+        if ($v != $c && $v > 0x7f) {
+            $broken_caps = 1;
+        }
+        }
     }
+
+    my @savedcapsvector = @capsvector;
+    for my $mask (0 .. 4) {
+        if ($savedcapsvector[$mask] =~ /^(\+?)U\+([0-9a-fA-F]+)$/ || $savedcapsvector[$mask] =~ /^dead_([a-z-A-Z]+)$/) {
+            my $v = hex ($2);
+            my $l = ord (lc (pack ("U", $v)));
+            my $u = ord (uc (pack ("U", $v)));
+            my $c = ord (pack ("U", $v));
+            my $cmap = $1 ."U+". sprintf ("%04x", $c);
+            if ($savedcapsvector[$mask] =~ /^dead_([a-z-A-Z]+)$/) {
+                $cmap = $savedcapsvector[$mask]
+            }
+            for my $count (0 .. 3) { # modulo 16 with $mask ?$masq % 16 == 0
+                if ($mask == 0 && $capslockable[0]) {
+                    $capsvector[$count * 16 + 1] = $cmap;
+                } elsif ($mask == 1 && $capslockable[1]) {
+                    $capsvector[$count * 16 + 0] = $cmap;
+                } elsif ($mask == 2 && $capslockable[2]) {
+                    $capsvector[$count * 16 + 3] = $cmap;
+                } elsif ($mask == 3 && $capslockable[3]) {
+                    $capsvector[$count * 16 + 2] = $cmap;
+                }
+                ++$count;
+            }
+        }
+    }
+    if ($no_NoSymbol) {
+        $KEYMAP .= "keycode $kernel_code = @vector @capsvector @vector @capsvector\n";
+    } else {
+        for my $mask (0 .. 63) {
+        if ($vector[$mask] ne 'NoSymbol') {
+            $KEYMAP .= "$modifier_combinations[$mask]"
+            ." keycode $kernel_code = $vector[$mask]\n";
+            if ($modifier_combinations[$mask] =~ /plain/) {
+            $KEYMAP .= "ctrll"
+                ." keycode $kernel_code = $capsvector[$mask]\n";
+            } else {
+            $KEYMAP .= "ctrll $modifier_combinations[$mask]"
+                ." keycode $kernel_code = $capsvector[$mask]\n";
+		    }
+        }
+    }
+    }
+}
 }
 
 my %at_scancodes = (
@@ -4703,7 +4750,9 @@ if ($freebsd) {
 } elsif ($compact) {
     $KEYMAP .= "keymaps 0-4,6,8,10,12,14\n";
 } else {
-    $KEYMAP .= "keymaps 0-127\n";
+#$KEYMAP .= "keymaps 0-127\n";
+$KEYMAP .= "keymaps 0-255\n";
+
 }
 
 if ($freebsd) {
@@ -4821,17 +4870,17 @@ if ($freebsd) {
         }
     }
 } else {
-    print "strings as usual\n";
+print "strings as usual\n";
 
-    if ($compose_charmap) {
-        my $file1 = "/etc/console-setup/compose.${compose_charmap}.inc";
-        my $file2 = "$installdir/etc/console-setup/compose.${compose_charmap}.inc";
-        if (-f $file1) {
-            system("cat $file1");
-        } elsif (-f $file2) {
-            system("cat $file2");
-        }
+if ($compose_charmap) {
+    my $file1 = "/etc/console-setup/compose.${compose_charmap}.inc";
+    my $file2 = "$installdir/etc/console-setup/compose.${compose_charmap}.inc";
+    if (-f $file1) {
+        system("cat $file1");
+    } elsif (-f $file2) {
+        system("cat $file2");
     }
+}
 }
 my $file1 = "/etc/console-setup/remap.inc";
 my $file2 = "$installdir/etc/console-setup/remap.inc";
